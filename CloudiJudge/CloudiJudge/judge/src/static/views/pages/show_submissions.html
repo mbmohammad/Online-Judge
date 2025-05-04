@@ -1,0 +1,73 @@
+<body>
+    <div class="container">
+        
+        {{if eq .Total 0}}
+            <h1>No submissions found!</h1>
+        {{else}}
+            <h1>submissions</h1>
+            <div class="submissions-section">
+                <div class="submissions-list">
+                    {{range .Submissions}}
+                        {{ if eq .Status "waiting" }}
+                            <div class="submission-item waiting">
+                        {{ else if eq .Status "Accepted"}}
+                            <div class="submission-item success">
+                        {{ else}}
+                            <div class="submission-item error">
+                        {{end}}
+                            <div class="submission-title">
+                                <a href="/problemset/{{ .Problem.ID }}">{{ .Problem.Title}}</a>
+                            </div>
+                            {{ if eq .Status "waiting" }}
+                                <i class="fas fa-clock"></i>
+                            {{ else if eq .Status "Accepted"}}
+                                <i class="fas fa-check-circle"></i>
+                            {{ else}}
+                                <i class="fas fa-times-circle"></i>
+                            {{end}}
+                            
+                            {{ if eq .Status "waiting" }}
+                                <div class="submission-status waiting">{{ .Status }}</div>
+                            {{ else if eq .Status "Accepted"}}
+                                <div class="submission-status success">{{ .Status }}</div>
+                            {{ else}}
+                                <div class="submission-status error">{{ .Status }}</div>
+                            {{end}}
+                        
+                            <div class="submission-time">{{ timeAgo .CreatedAt}}</div>
+                            <a href="/user/{{$.ProfileUser.ID}}/submissions/dl/{{.ID}}" class="show-code-btn" target="_blank">Download Code</a>
+                        
+
+                        </div>
+                        
+                    {{end}}
+                </div>
+            </div>
+        {{end}}
+        {{if gt .Total 0}}
+            <div class="pagination">
+                {{if gt .Offset 0}}
+                    <a class="page-btn" href="/user/{{.ProfileUser.ID}}/submissions?limit={{.Limit}}&offset={{sub .Offset .Limit}}" disabled>
+                        <i class="fas fa-chevron-left"></i>Previous</a>
+                {{ else }}
+                    <button class="page-btn" disabled>
+                        <i class="fas fa-chevron-left"></i> Previous
+                    </button>
+                {{end}}
+        
+                <div class="page-info">Page {{ .CurrentPage }} of {{ .Pages }}</div>
+                {{if lt .CurrentPage .Pages}}
+                        <a href="/user/{{.ProfileUser.ID}}/submissions?limit={{.Limit}}&offset={{add .Offset .Limit}}" class="page-btn">Next
+                            <i class="fas fa-chevron-right"></i>
+                        </a>
+                {{ else }}
+                    <button class="page-btn" disabled>Next
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                {{end}}
+            
+            </div>
+        {{ end }}
+    </div>
+    
+</body>
