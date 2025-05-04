@@ -175,10 +175,10 @@ Follow these steps to set up and run the **CloudiJudge** project:
 
 ## Contributors
 
-- Sajjad: Implemented the backend part of the website.
+- Sajjad: 
   - Email: [sajjad.mohammadbeigi@gmail.com](mailto:sajjad.mohammadbeigi@gmail.com)
   - GitHub: [@sajjad-MoBe](https://github.com/sajjad-MoBe)
 
-- Mohammad: Implemented the frontend part of the website.
+- Mohammad: 
   - Email: [mohammadmohammadbeigi1381@gmail.com](mailto:mohammadmohammadbeigi1381@gmail.com)
   - GitHub: [@mbmohammad](https://github.com/mbmohammad)
